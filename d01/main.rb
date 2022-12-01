@@ -1,15 +1,8 @@
 require_relative '../helper/aoc-helper'
 
-inp = File.read('input.txt')
+sums = File.read('input.txt')
+           .split("\n\n")
+           .map { |section| section.lines.map(&:to_i).inject(:+) }
 
-sections = inp.split("\n\n")
-
-sums = []
-sections.each do |section|
-  sums.push section.split("\n").map(&:to_i).inject(:+)
-end
-
-sums.sort_by! { |a| -a }
-
-puts sums[0] # answer 1
-puts sums[0] + sums[1] + sums[2] # answer 2
+puts sums.max
+puts sums.max(3).sum
